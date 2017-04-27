@@ -1,4 +1,4 @@
-#Example of Selenium Tests
+# Example of Selenium Tests
 
 ## Project Configuration
 - Selenium 2.53
