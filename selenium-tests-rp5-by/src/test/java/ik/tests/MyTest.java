@@ -24,7 +24,7 @@ import org.openqa.selenium.By;
 import by.rp5.Rp5PageElements;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Rp5PageTest {
+public class MyTest {
 
 	@BeforeClass
 	public static void setUp() {
