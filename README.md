@@ -12,7 +12,7 @@
 ### How to Run Tests
 1. Download ZIP file of the project, unzip it. 
 2. Import project as Maven project in Eclipse.
-3. Make sure that in the class `by.rp5.WebBrowser`, value of system property `webdriver.firefox.bin` points out to exe-file of FireFox. As an alternative you can define system environment variable with the same name and required value on your machine.  
+3. Make sure that in the class `by.rp5.WebBrowser`, value of system property `webdriver.firefox.bin` points out to fireFox.exe file in your file system. As an alternative you can define system environment variable with the same name and required value on your machine.  
 4. Open `pom.xml` to check it for errors. 
 5. Press `Alt+F5` to build project.
 6. Open file `by.rp5.Rp5PageTest` and press `Ctrl+F11` to run TestNG tests.   
