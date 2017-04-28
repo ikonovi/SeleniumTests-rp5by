@@ -38,8 +38,9 @@ public class Rp5PageElements {
 			if (props == null) {
 				try {
 					props = new Properties();
-					String locatorsPropsFile = System.getProperty("locators_Rp5.properties", 
-							"src/main/resources/locators_Rp5.properties");
+					// It can be set as a VM argument in the way:  -Dlocators_rp5.properties=filePathValue
+					String locatorsPropsFile = System.getProperty("locators_rp5.properties", 
+							"src/main/resources/locators_rp5.properties");
 					input = new FileInputStream(locatorsPropsFile);
 					props.load(input);
 				} catch (IOException ex) {
