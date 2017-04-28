@@ -1,7 +1,5 @@
 package by.rp5.tests;
 
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.Assume;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -13,8 +11,8 @@ public class Rp5PageTest {
 	@Test
 	public void test01PageLocatorExample() {
 		By oBy = Rp5PageElements.measureUnitsButton;
-		System.out.println("Locator measureUnitsButton = " + oBy);
-		assertNotNull(oBy);
+		Assume.assumeNotNull(oBy);
+		System.out.println("Locator measureUnitsButton = " + oBy);		
 	}
 
 	@Test
