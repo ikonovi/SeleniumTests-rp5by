@@ -1,12 +1,16 @@
 package ik.tests;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.startsWith;
+import static org.junit.Assert.*;
 import static org.junit.Assume.assumeFalse;
 import static org.junit.Assume.assumeThat;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Assume;
 import org.junit.AssumptionViolatedException;
 import org.junit.Before;
@@ -14,8 +18,11 @@ import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
+import org.junit.rules.TestName;
 import org.junit.rules.TestRule;
+import org.junit.rules.Timeout;
 import org.junit.runner.Description;
 import org.junit.runners.MethodSorters;
 import org.junit.runners.model.Statement;
@@ -36,43 +43,30 @@ public class MyTest {
 		System.out.println("-After class");
 	}
 
-	@Before 
+	@Before
 	public void beforeMethod() {
-		System.out.println("--Before method");
-    }	
-	
-	@After 
+		//System.out.println("--Before method");
+	}
+
+	@After
 	public void afterMethod() {
-		System.out.println("--After method");
-    }
-	
+		//System.out.println("--After method");
+	}
+
+	@Rule
+	public TestName name = new TestName();
+
 	@Rule
 	public final TemporaryFolder tempFolder = new TemporaryFolder();
 	
-	//@Rule
-	public TestRule rule01() {
-		System.out.println("---Rule 1");
-		return new TestRule(){
-
-			@Override
-			public Statement apply(Statement base, Description description) {
-				// TODO Auto-generated method stub
-				return null;
-			}} ;
-    }
-
 	@Test
-	public void test01PageLocatorExample() {
-		By oBy = Rp5PageElements.measureUnitsButton;
-		System.out.println("Locator measureUnitsButton = " + oBy);
-		assertNotNull(oBy);
+	public void test01() {
+		System.out.println("\n" + name.getMethodName() + "\n" + tempFolder.getRoot().getPath());
 	}
 
 	@Test
-	public void test02LocatorsFileSysEnvPassedOn() {
-		String sysEnv = System.getProperty("locators_rp5.properties");
-		Assume.assumeTrue("Not defined system environment variable \"locators_rp5.properties\"", sysEnv != null);
-		System.out.println("Sys env variable locators.properties=" + sysEnv);
+	public void test02() {
+		Assert.assertThat("aa O_K bb", not(containsString("OK")));
 	}
 
 	@Test
@@ -82,8 +76,35 @@ public class MyTest {
 
 	}
 
-	@Test(expected = AssumptionViolatedException.class)
-	public void test04() {
-		throw new AssumptionViolatedException("Test of exception on rising.");
+	@Rule
+	public final TestRule globalTimeout = Timeout.seconds(1);
+
+	@Test
+	public void testInfiniteLoop() {
+		int i = 0;
+		while (true) {
+			i += 1;
+		}
 	}
+
+	@Rule
+	public final ExpectedException thrown = ExpectedException.none();
+
+	@Test
+	public void throwsNullPointerExceptionWithMessage() {
+		thrown.expect(NullPointerException.class);
+		thrown.expectMessage("happened?");
+		thrown.expectMessage(startsWith("What"));
+		throw new NullPointerException("What happened?");
+	}
+
+	@Test
+	public void testFailed() {
+		fail();
+	}
+
+	@Test
+	public void testSucceeded() {
+	}
+
 }
