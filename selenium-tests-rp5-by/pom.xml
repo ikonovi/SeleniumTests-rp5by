@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ik</groupId>
 	<artifactId>selenium-tests-rp5-by</artifactId>
-	<version>0.1.0</version>
+	<version>0.0.1</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -13,27 +13,32 @@
 	</properties>
 
 	<build>
-		<finalName>${project.name}_${project.version}</finalName>		
+		<finalName>${project.name}_${project.version}</finalName>
 	</build>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-server</artifactId>
-			<!-- <version>2.49.0</version> -->
-			<version>2.53.1</version>
-			<!-- <version>3.3.1</version> -->
+			<artifactId>selenium-server</artifactId>			
+			<version>3.4.0</version>
 		</dependency>
+		<!-- <version>2.49.0</version> -->
+		<!-- <version>2.53.1</version> -->
+		<!-- <version>3.3.1</version> -->
+
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>6.9.13.6</version>
 		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>			
+			<version>4.12</version>
 		</dependency>
+
 	</dependencies>
 
 </project>
