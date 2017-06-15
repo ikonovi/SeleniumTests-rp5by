@@ -1,4 +1,4 @@
-package by.rp5.tests;
+package by.rp5.test;
 
 import org.junit.Assume;
 import org.junit.Test;

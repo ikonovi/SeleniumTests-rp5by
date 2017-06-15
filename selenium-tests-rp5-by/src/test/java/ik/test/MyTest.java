@@ -1,4 +1,4 @@
-package ik.tests;
+package ik.test;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;

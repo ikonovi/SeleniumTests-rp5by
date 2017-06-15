@@ -2,26 +2,28 @@ package by.rp5;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class Rp5Page {
+public class PageRp5 {
 
 	private WebDriver driver;
 	private static String url = "http://rp5.by/?lang=ru";
 	private boolean acceptNextAlert = true;
 
-	public Rp5Page(WebDriver driver) {
+	public PageRp5(WebDriver driver) {
 		this.driver = driver;
 	}
 
-	public void open() {
+	public void doOpen() {
 		driver.get(url);
 	}
 
-	public void close() {
+	public void doClose() {
 		driver.close();
 	}
 
@@ -39,8 +41,14 @@ public class Rp5Page {
 		return e;
 	}
 	
-	public WebElement getWeatherReportCaptionTemperature(){
-		WebElement e = driver.findElement(Rp5PageElements.weatherReportCaptionTemper); 
+	public WebElement getWeatherReportCaptionTemperature() throws InterruptedException{
+		WebElement e = driver.findElement(Rp5PageElements.weatherReportCaptionTemper);
+		// >> Experimental highlight of element. why arguments ?? not args
+		JavascriptExecutor js = ((JavascriptExecutor) driver);
+		String script = "var el = arguments[0]; " + 
+						"el.style.border = 'medium solid yellow';";
+		e = (WebElement) js.executeAsyncScript(script, e);
+		// <<
 		return e;
 	}
 
