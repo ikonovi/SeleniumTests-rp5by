@@ -11,23 +11,23 @@ public class PageRp5Test {
 
 	public final String city = "Минск";
 
-	private WebBrowser browser;
+	private FirefoxBrowser ff;
 	private PageRp5 myPage;
 
 	@BeforeClass()
 	public void setUp() throws Exception {
-		browser = new WebBrowser();
-		myPage = browser.openPageRp5();
+		ff = new FirefoxBrowser();
+		myPage = new PageRp5(ff);
+		myPage.open();
 	}
 
 	@AfterClass(alwaysRun = true, enabled = false)
 	public void tearDown() throws Exception {
-		browser.close();
+		myPage.close();
 	}
 
 	@Test(priority = 10, description = "Сайт http://rp5.by открывается.")
 	public void testOpenHomepage() throws Exception {
-		myPage.doOpen();
 		String title = myPage.getTitle();
 		assertEquals(title.substring(0, 6), "Погода");
 	}

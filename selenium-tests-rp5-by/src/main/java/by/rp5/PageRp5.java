@@ -7,23 +7,22 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class PageRp5 {
+public class PageRp5 extends Page {
 
 	private WebDriver driver;
-	private static String url = "http://rp5.by/?lang=ru";
+	private static final String url = "http://rp5.by/?lang=ru";
 	private boolean acceptNextAlert = true;
 
-	public PageRp5(WebDriver driver) {
-		this.driver = driver;
+	public PageRp5(Browser browser) {
+		this.driver = browser.getWebDriver();
 	}
 
-	public void doOpen() {
+	public void open() {
 		driver.get(url);
 	}
-
-	public void doClose() {
+	
+	public void close() {
 		driver.close();
 	}
 
