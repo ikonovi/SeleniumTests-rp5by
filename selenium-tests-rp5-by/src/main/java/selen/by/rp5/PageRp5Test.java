@@ -1,23 +1,26 @@
-package by.rp5;
+package selen.by.rp5;
 
 import static org.testng.Assert.assertEquals;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import selen.browser.BrowserType;
+import selen.browser.WebDriverSelector;
+
 public class PageRp5Test {
 
 	public final String city = "Минск";
 
-	private FirefoxBrowser ff;
 	private PageRp5 myPage;
 
 	@BeforeClass()
 	public void setUp() throws Exception {
-		ff = new FirefoxBrowser();
-		myPage = new PageRp5(ff);
+		WebDriver driver = WebDriverSelector.getInstance().getWebDriver(BrowserType.CHROME);		
+		myPage = new PageRp5(driver);
 		myPage.open();
 	}
 

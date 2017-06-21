@@ -1,4 +1,4 @@
-package by.rp5;
+package selen.by.rp5;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,12 +16,14 @@ public class Rp5PageElements {
 	public static By measureUnitsButton = By.xpath(XPathExpression.measureUnitsButton.toString());
 	public static By measureUnitsMenu = By.xpath(XPathExpression.measureUnitsMenu.toString());
 	public static By measureUnitsMenuTemperF = By.xpath(XPathExpression.measureUnitsMenuTemperF.toString());
+	public static By measureUnitsMenuTemperC = By.xpath(XPathExpression.measureUnitsMenuTemperC.toString());
 	public static By weatherReportCaptionTemper = By.xpath(XPathExpression.weatherReportCaptionTemper.toString());
 
 	private enum XPathExpression {
 		
 		weatherReportCaptionTemper("weatherReportCaptionTemper"),
 		measureUnitsMenuTemperF("measureUnitsMenuTemperF"),
+		measureUnitsMenuTemperC("measureUnitsMenuTemperC"),
 		measureUnitsMenu("measureUnitsMenu"),
 		measureUnitsButton("measureUnitsButton"),
 		searchResultTemperature("searchResultTemperature"),

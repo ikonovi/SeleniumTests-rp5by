@@ -1,4 +1,4 @@
-package by.rp5;
+package selen.by.rp5;
 
 public abstract class Page {
 

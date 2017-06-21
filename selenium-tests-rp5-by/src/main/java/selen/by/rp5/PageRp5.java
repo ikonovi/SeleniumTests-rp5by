@@ -1,8 +1,7 @@
-package by.rp5;
+package selen.by.rp5;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -14,8 +13,8 @@ public class PageRp5 extends Page {
 	private static final String url = "http://rp5.by/?lang=ru";
 	private boolean acceptNextAlert = true;
 
-	public PageRp5(Browser browser) {
-		this.driver = browser.getWebDriver();
+	public PageRp5(WebDriver driver) throws Exception {
+		this.driver = driver;
 	}
 
 	public void open() {
@@ -41,14 +40,16 @@ public class PageRp5 extends Page {
 	}
 	
 	public WebElement getWeatherReportCaptionTemperature() throws InterruptedException{
-		WebElement e = driver.findElement(Rp5PageElements.weatherReportCaptionTemper);
-		// >> Experimental highlight of element. why arguments ?? not args
-		JavascriptExecutor js = ((JavascriptExecutor) driver);
-		String script = "var el = arguments[0]; " + 
-						"el.style.border = 'medium solid yellow';";
-		e = (WebElement) js.executeAsyncScript(script, e);
-		// <<
-		return e;
+		WebElement e1 = driver.findElement(Rp5PageElements.weatherReportCaptionTemper);
+		
+		// Experimental highlight of element. why arguments ?? not args
+		//JavascriptExecutor js = ((JavascriptExecutor) driver);
+		//String script = "var el = arguments[arguments.length - 1];" + 
+		//					"el.style.border = 'medium solid yellow';";		
+		//WebElement e2 = (WebElement) js.executeAsyncScript(script);
+		//Object responce = js.executeAsyncScript("document.getElementById('ArchTemp').style.border = 'medium solid yellow'");
+		
+		return e1;
 	}
 
 	public void doSelectOptionInSearchResult(String location) {
@@ -56,12 +57,29 @@ public class PageRp5 extends Page {
 		e.click();
 	}
 	
-	public void doSetMeasurementUnitsTemperatureFahrenheit() {
+	public void doSetMeasurementUnitsTemperatureFahrenheit() throws InterruptedException {
+		
+		// Open settings area
 		WebElement measureUnitsButton = driver.findElement(Rp5PageElements.measureUnitsButton);
 		measureUnitsButton.click();
+		
+		// wait element
 		isElementPresent(Rp5PageElements.measureUnitsMenu);
-		WebElement tempFRadio = driver.findElement(Rp5PageElements.measureUnitsMenuTemperF);
-		tempFRadio.click();
+		
+		WebElement tempFRadio = driver.findElement(Rp5PageElements.measureUnitsMenuTemperF);		
+		
+		// UI logic
+		if (tempFRadio.isEnabled()) {
+			if (!tempFRadio.isSelected()) {
+				tempFRadio.click();				
+			} else {
+				System.out.println("Can't be clicked by cause it's already selected.");
+			}
+		} else {
+			System.out.println("Can't be clicked by cause it's disabled.");
+		}
+		
+		// Close settings area
 		measureUnitsButton.click();
 	}
 

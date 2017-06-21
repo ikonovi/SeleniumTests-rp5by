@@ -4,7 +4,7 @@ import org.junit.Assume;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
-import by.rp5.Rp5PageElements;
+import selen.by.rp5.Rp5PageElements;
 
 public class Rp5PageTest {
 
