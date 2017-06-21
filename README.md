@@ -10,7 +10,7 @@
 * Web-site [http://rp5.by](http://rp5.by)  
 * User's environment variables: 
 <code>webdriver.chrome.driver</code> = path to ChromeDriver exe-file;
-<code>webdriver.gecko.driver</code> = path to GeckoDriver exe-file. + your web-browser restart :-)
+<code>webdriver.gecko.driver</code> = path to GeckoDriver exe-file. As a follow up to this, you need to restart Eclipse after that :-)
 
 
 
