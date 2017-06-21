@@ -1,4 +1,4 @@
-package selen.by.rp5;
+package ik.selen.by.rp5;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;

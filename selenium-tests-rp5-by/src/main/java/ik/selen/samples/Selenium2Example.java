@@ -1,4 +1,4 @@
-package ik;
+package ik.selen.samples;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;

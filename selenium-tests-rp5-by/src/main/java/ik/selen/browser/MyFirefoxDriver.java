@@ -1,7 +1,7 @@
 /**
  * 
  */
-package selen.browser;
+package ik.selen.browser;
 
 import java.util.List;
 

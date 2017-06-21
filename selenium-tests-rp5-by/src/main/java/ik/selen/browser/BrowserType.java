@@ -1,4 +1,4 @@
-package selen.browser;
+package ik.selen.browser;
 
 public enum BrowserType {
 

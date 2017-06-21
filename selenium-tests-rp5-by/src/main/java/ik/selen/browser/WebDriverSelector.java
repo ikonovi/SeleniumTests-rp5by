@@ -1,4 +1,4 @@
-package selen.browser;
+package ik.selen.browser;
 
 import org.openqa.selenium.WebDriver;
 

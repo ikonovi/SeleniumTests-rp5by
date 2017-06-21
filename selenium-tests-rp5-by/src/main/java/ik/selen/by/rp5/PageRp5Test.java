@@ -1,4 +1,4 @@
-package selen.by.rp5;
+package ik.selen.by.rp5;
 
 import static org.testng.Assert.assertEquals;
 
@@ -8,8 +8,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import selen.browser.BrowserType;
-import selen.browser.WebDriverSelector;
+import ik.selen.browser.BrowserType;
+import ik.selen.browser.WebDriverSelector;
 
 public class PageRp5Test {
 

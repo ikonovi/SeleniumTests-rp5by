@@ -1,4 +1,4 @@
-package selen.by.rp5;
+package ik.selen.by.rp5;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -28,7 +28,7 @@ import org.junit.runners.MethodSorters;
 import org.junit.runners.model.Statement;
 import org.openqa.selenium.By;
 
-import selen.by.rp5.Rp5PageElements;
+import ik.selen.by.rp5.Rp5PageElements;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MyTest {
