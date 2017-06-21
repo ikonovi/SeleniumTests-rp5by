@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
  * Starts FireFox web-browser and pass on WebDriver object.
  * <P>
  * Prerequisite: Set user's environment variable with name
- * 'webdriver.gecko.driver' and value that is a path to GeckoDriver exe-file.
+ * <code>webdriver.gecko.driver</code> and value that is a path to GeckoDriver exe-file.
  * <P>
  * GeckoDriver page:
  * <a href='https://github.com/mozilla/geckodriver/releases'>
