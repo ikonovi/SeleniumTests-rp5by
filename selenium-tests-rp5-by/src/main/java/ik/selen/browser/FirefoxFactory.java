@@ -11,10 +11,10 @@ import org.openqa.selenium.firefox.FirefoxProfile;
  * Starts FireFox web-browser and pass on WebDriver object.
  * <P>
  * Prerequisite: Set user's environment variable with name
- * <code>webdriver.gecko.driver</code> and value that is a path to GeckoDriver exe-file.
+ * <code>webdriver.gecko.driver</code> and value that is a path to GeckoDriver
+ * exe-file.
  * <P>
- * GeckoDriver page:
- * <a href='https://github.com/mozilla/geckodriver/releases'>
+ * GeckoDriver page: <a href='https://github.com/mozilla/geckodriver/releases'>
  * https://github.com/mozilla/geckodriver/releases</a>
  * 
  * @author KanavalauI
@@ -54,7 +54,13 @@ public class FirefoxFactory implements BrowserFactory {
 	 * @throws Exception
 	 */
 	private void initSysEnv() throws WebDriverException {
+
 		driverPath = System.getenv(WEBDRIVER_ENV);
+		if (driverPath == null) {
+			throw new WebDriverException("User's environment variable \"" + WEBDRIVER_ENV
+					+ "\" is not defined in your system, or you didn't restart Eclipse after you defined it.");
+		}
+
 		driverFile = new File(driverPath);
 		if (driverFile.exists()) { // Validate path.
 			System.setProperty(WEBDRIVER_ENV, driverPath);

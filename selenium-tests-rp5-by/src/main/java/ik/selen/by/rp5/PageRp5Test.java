@@ -19,7 +19,7 @@ public class PageRp5Test {
 
 	@BeforeClass()
 	public void setUp() throws Exception {
-		WebDriver driver = WebDriverSelector.getInstance().getWebDriver(BrowserType.CHROME);		
+		WebDriver driver = WebDriverSelector.getInstance().getWebDriver(BrowserType.FIREFOX);		
 		myPage = new PageRp5(driver);
 		myPage.open();
 	}

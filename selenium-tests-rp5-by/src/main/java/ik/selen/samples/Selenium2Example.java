@@ -7,6 +7,7 @@ import java.io.File;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -19,24 +20,30 @@ public class Selenium2Example {
 	public static void main(String[] args) throws Exception {
 
 		// Chrome
+		
 		// System.setProperty("webdriver.chrome.driver",
 		// "D:\\Install\\Selenium\\Chrome Driver\\chromedriver-v2.30.exe");
 		// WebDriver driver = new ChromeDriver();
 
 		// Firefox
-
+		
 		// Set system environment variable with the same name as user's defined
 		// 	environment variable if such exists.
-		final String ENV_WEBDRIVER_GECKO_DRIVER = "webdriver.gecko.driver";
-		String geskoDriver = System.getenv(ENV_WEBDRIVER_GECKO_DRIVER);
-
+		final String WEBDRIVER_ENV = "webdriver.gecko.driver";		
+		
+		String geskoDriver = System.getenv(WEBDRIVER_ENV);		
+		if (geskoDriver == null){
+			throw new WebDriverException("User's environment variable \"" + WEBDRIVER_ENV
+					+ "\" is not defined in your system, or you didn't restart Eclipse after you defined it.");
+		}
+		
 		// Check Gecko Driver path in file system.
 		File geskoDriverFile = new File(geskoDriver);
 		if (geskoDriverFile.exists()) {
-			System.setProperty(ENV_WEBDRIVER_GECKO_DRIVER, geskoDriver);
+			System.setProperty(WEBDRIVER_ENV, geskoDriver);
 		} else {
-			throw new Exception("User's environment variable \"" + ENV_WEBDRIVER_GECKO_DRIVER
-					+ "\" is not set or has incorrect value, " + geskoDriverFile.getPath());
+			throw new WebDriverException("User's environment variable \"" + WEBDRIVER_ENV
+					+ "\" has incorrect value, " + geskoDriverFile.getPath());
 		}
 
 		// Create driver

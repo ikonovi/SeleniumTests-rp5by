@@ -15,7 +15,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * ChromeDriver page:
  * <a href='https://sites.google.com/a/chromium.org/chromedriver/downloads'>
  * https://sites.google.com/a/chromium.org/chromedriver/downloads</a>
- *  
+ * 
  * @author KanavalauI
  * @see also {@link FirefoxFactory}
  *
@@ -45,7 +45,13 @@ public class ChromeFactory implements BrowserFactory {
 	}
 
 	private void initSysEnv() {
+
 		driverPath = System.getenv(WEBDRIVER_ENV);
+		if (driverPath == null) {
+			throw new WebDriverException("User's environment variable \"" + WEBDRIVER_ENV
+					+ "\" is not defined in your system, or you didn't restart Eclipse after you defined it.");
+		}
+
 		driverFile = new File(driverPath);
 		if (driverFile.exists()) { // Validate path.
 			System.setProperty(WEBDRIVER_ENV, driverPath);
