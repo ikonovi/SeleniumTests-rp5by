@@ -1,5 +1,9 @@
 package ik.selen.by.rp5;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.isA;
+import static org.junit.Assert.assertThat;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.WebDriver;
@@ -48,7 +52,8 @@ public class PageRp5Test {
 	public void testTemperatureDisplayedInDegrees() throws Exception {
 		WebElement temperature = myPage.getSearchResulTemperature();
 		String tempText = temperature.getText();
-		assertEquals(tempText.charAt(tempText.length() - 2), '°');
+		//assertEquals(tempText.charAt(tempText.length() - 2), );
+		assertThat("", tempText.charAt(tempText.length() - 2), is(Character.valueOf('°')));
 	}
 
 	@Test(priority = 40, description = "Температура отображается в форенгейтах - если переключить.")
