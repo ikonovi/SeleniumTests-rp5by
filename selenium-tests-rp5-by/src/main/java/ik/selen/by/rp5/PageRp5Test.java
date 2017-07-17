@@ -1,8 +1,6 @@
 package ik.selen.by.rp5;
 
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.isA;
 import static org.junit.Assert.assertThat;
 import static org.testng.Assert.assertEquals;
 

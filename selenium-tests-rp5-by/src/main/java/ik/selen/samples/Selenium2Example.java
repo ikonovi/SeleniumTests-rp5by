@@ -47,7 +47,8 @@ public class Selenium2Example {
 		}
 
 		// Create driver
-		FirefoxProfile ffProfile = new FirefoxProfile();
+		File profileDir = new File(System.getenv("LOCALAPPDATA") + "\\Mozilla\\FirefoxProfile.4autoTests");
+		FirefoxProfile ffProfile = new FirefoxProfile(profileDir);
 		FirefoxOptions ffOptions = new FirefoxOptions();
 		ffOptions.addPreference("browser.tabs.remote.autostart.2", false);
 		ffOptions.setProfile(ffProfile);
