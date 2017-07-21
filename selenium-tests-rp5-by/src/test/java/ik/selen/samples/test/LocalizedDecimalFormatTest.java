@@ -25,7 +25,7 @@ public class LocalizedDecimalFormatTest {
 
 	@Test(dataProvider = "dp")
 	public void formatTest(String doubleNumber, String localizedDecimal) {
-		Assume.assumeThat(LocalizedDecimalFormat.getServerlocale(), is(equalTo(Locale.GERMANY)));
+		Assume.assumeThat(LocalizedDecimalFormat.getServerLocale(), is(equalTo(Locale.GERMANY)));
 		Assert.assertEquals(LocalizedDecimalFormat.format(doubleNumber), localizedDecimal);
 	}
 }

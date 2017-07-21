@@ -50,7 +50,7 @@ public class LocalizedDecimalFormat {
 		return format.format(value).trim();
 	}
 	
-	public static Locale getServerlocale() {
+	public static Locale getServerLocale() {
 		return serverLocale;
 	}
 	

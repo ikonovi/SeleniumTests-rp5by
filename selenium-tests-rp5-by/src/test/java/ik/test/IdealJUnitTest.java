@@ -31,7 +31,7 @@ import org.openqa.selenium.By;
 import ik.selen.by.rp5.Rp5PageElements;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class MyTest {
+public class IdealJUnitTest {
 
 	@BeforeClass
 	public static void setUp() {

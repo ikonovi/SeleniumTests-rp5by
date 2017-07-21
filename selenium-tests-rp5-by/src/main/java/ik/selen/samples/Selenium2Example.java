@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 import java.io.File;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -45,17 +46,20 @@ public class Selenium2Example {
 			throw new WebDriverException("User's environment variable \"" + WEBDRIVER_ENV
 					+ "\" has incorrect value, " + geskoDriverFile.getPath());
 		}
-
 		// Create driver
-		File profileDir = new File(System.getenv("LOCALAPPDATA") + "\\Mozilla\\FirefoxProfile.4autoTests");
-		FirefoxProfile ffProfile = new FirefoxProfile(profileDir);
+		//File profileDir = new File(System.getenv("LOCALAPPDATA") + "\\Mozilla\\FirefoxProfile.4autoTests");
+		//FirefoxProfile ffProfile = new FirefoxProfile(profileDir);
+		
+		
+		FirefoxProfile ffProfile = new FirefoxProfile();
 		FirefoxOptions ffOptions = new FirefoxOptions();
 		ffOptions.addPreference("browser.tabs.remote.autostart.2", false);
-		ffOptions.setProfile(ffProfile);
-		WebDriver driver = new FirefoxDriver(ffOptions);
-		
+		ffOptions.setProfile(ffProfile);		
+		WebDriver driver = new FirefoxDriver(ffOptions);		
 
 		driver.get("http://google.com");
+		driver.findElement(By.xpath("//body")).sendKeys(Keys.F11);
+		
 		WebElement element = driver.findElement(By.name("q"));
 		System.out.println("Page title is: " + driver.getTitle());
 		element.sendKeys("Cheese!");
@@ -73,6 +77,8 @@ public class Selenium2Example {
 		assertThat("Page title is wrong.", driver.getTitle(), containsString("Cheese!"));
 
 		driver.quit();
+		
+		
 	}
 
 }

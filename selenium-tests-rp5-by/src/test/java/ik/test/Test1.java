@@ -8,6 +8,8 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
@@ -16,7 +18,10 @@ import com.sun.jna.platform.win32.OaIdl.CURRENCY;
 
 import ik.selen.samples.LocalizedDecimalFormat;
 
+@SuppressWarnings("unused")
 public class Test1 {
+	
+	static Number number = Long.parseLong("1");
 
 	public static void main(String[] args) throws ParseException {
 		/*
@@ -26,7 +31,11 @@ public class Test1 {
 		 */
 		// assertThat("Numbers is not equal", 2, is(1));
 
-		System.out.println("4,003.00".replaceAll(",00$|\\.00$|,|\\.", ""));
+		//System.out.println("4,003.00".replaceAll(",00$|\\.00$|,|\\.", ""));
+		
+		LocalDate date = LocalDate.of(2017, 7, 1);
+		System.out.println(date.format(DateTimeFormatter.ISO_LOCAL_DATE));
+		System.out.println(date);
 		
 	}
 
