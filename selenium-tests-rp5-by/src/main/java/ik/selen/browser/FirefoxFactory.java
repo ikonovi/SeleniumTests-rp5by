@@ -2,10 +2,13 @@ package ik.selen.browser;
 
 import java.io.File;
 
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 /**
  * Starts FireFox web-browser and pass on WebDriver object.
@@ -22,60 +25,78 @@ import org.openqa.selenium.firefox.FirefoxProfile;
  */
 public class FirefoxFactory implements BrowserFactory {
 
-	private static final String WEBDRIVER_ENV = "webdriver.gecko.driver";
-
-	private String driverPath;
-	private File driverFile;
-	private FirefoxProfile profile;
-	private FirefoxOptions options;
-
-	private static FirefoxFactory instance;
+	private static FirefoxFactory factoryInstance;
 
 	private FirefoxFactory() {
 	}
 
-	static FirefoxFactory getInstace() {
-		if (instance == null) {
-			instance = new FirefoxFactory();
+	static FirefoxFactory getFactoryInstace() {
+		if (factoryInstance == null) {
+			factoryInstance = new FirefoxFactory();
 		}
-		return instance;
+		return factoryInstance;
 	}
 
-	public FirefoxDriver createBrowser() throws WebDriverException {
-		initSysEnv();
-		FirefoxDriver driver = newFirefoxDriver();
-		return driver;
+	@Override
+	public WebDriver createBrowser() throws WebDriverException {
+		return createBrowserWithOptionLegacyOn();
 	}
 
-	/**
-	 * Define system environment variable that has the same name as user's
-	 * defined environment variable, user created before as it's prerequisite.
-	 * 
-	 * @throws Exception
-	 */
-	private void initSysEnv() throws WebDriverException {
+	FirefoxDriver createBrowserWithGeckoDriver() throws WebDriverException {
+		initGeckoDriver();
+		return new MyFirefoxDriver(setFirefoxOptions());
+	}
 
-		driverPath = System.getenv(WEBDRIVER_ENV);
-		if (driverPath == null) {
-			throw new WebDriverException("User's environment variable \"" + WEBDRIVER_ENV
+	FirefoxDriver createBrowserWithMarionetteOff() throws WebDriverException {
+		return new MyFirefoxDriver(setFirefoxOptions().addCapabilities(setCapabilityMarionetteOff()));
+	}
+
+	FirefoxDriver createBrowserWithOptionLegacyOn() throws WebDriverException {
+		return new MyFirefoxDriver(setFirefoxOptions().setLegacy(true));
+	}
+
+	private void initGeckoDriver() throws WebDriverException {
+
+		final String GECKO_DRIVER_ENV = "webdriver.gecko.driver";
+
+		// Get user's environment variable.
+		String envValue = System.getenv(GECKO_DRIVER_ENV);
+		if (envValue == null) {
+			throw new WebDriverException("User's environment variable \"" + GECKO_DRIVER_ENV
 					+ "\" is not defined in your system, or you didn't restart Eclipse after you defined it.");
 		}
 
-		driverFile = new File(driverPath);
-		if (driverFile.exists()) { // Validate path.
-			System.setProperty(WEBDRIVER_ENV, driverPath);
+		File fileExe = new File(envValue);
+
+		// Initialize system environment variable, using user's environment variable.
+		if (fileExe.exists()) {
+			System.setProperty(GECKO_DRIVER_ENV, envValue);
 		} else {
-			throw new WebDriverException("User's environment variable \"" + WEBDRIVER_ENV
-					+ "\" is not set or has incorrect value, " + driverFile.getPath());
+			throw new WebDriverException("User's environment variable \"" + GECKO_DRIVER_ENV
+					+ "\" is not set or has incorrect value, " + fileExe.getPath());
 		}
 	}
 
-	private FirefoxDriver newFirefoxDriver() {
-		options = new FirefoxOptions();
+	/**
+	 * Use legacy FireFox extension as a driver.
+	 */
+	private Capabilities setCapabilityMarionetteOff() {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability("marionette", false);
+		// The following is an alternative for the code above.
+		// System.setProperty("webdriver.firefox.marionette", "false");
+		return capabilities;
+	}
+
+	private FirefoxOptions setFirefoxOptions() {
+		FirefoxOptions options = new FirefoxOptions();
+
+		// Add option that prevent running FF in multiple thread mode.
 		options.addPreference("browser.tabs.remote.autostart.2", false);
-		profile = new FirefoxProfile();
+
+		FirefoxProfile profile = new FirefoxProfile();
 		options.setProfile(profile);
-		return new MyFirefoxDriver(options);
+		return options;
 	}
 
 }

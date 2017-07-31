@@ -17,20 +17,19 @@ public class WebDriverSelector {
 	}
 
 	public WebDriver getWebDriver(BrowserType browserType) {
-		
 		WebDriver driver = null;
-		
+
 		switch (browserType) {
 		case FIREFOX:
-			driver = FirefoxFactory.getInstace().createBrowser();
+			driver = FirefoxFactory.getFactoryInstace().createBrowser();
 			break;
 		case CHROME:
 			driver = ChromeFactory.getInstace().createBrowser();
 			break;
-		}		
+		}
 		
-		driver = WebDriverOptions.apply(driver);
-		
+		driver = WebDriverOptions.applyTimeouts(driver);
+		driver = WebDriverOptions.applyWindowSettings(driver);
 		return driver;
 	}
 

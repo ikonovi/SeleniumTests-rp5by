@@ -3,15 +3,25 @@ package ik.selen.browser;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver.Timeouts;
 
+@SuppressWarnings("unused")
 class WebDriverOptions {
 	
-	private final static int WAIT_SECONDS = 15;
+	private static Timeouts elementSearchTimeout;
+	private static Timeouts pageLoadTimeout;
+	private static Timeouts scriptTimeout;
 
-	static WebDriver apply(WebDriver driver){
-		driver.manage().timeouts().implicitlyWait(WAIT_SECONDS, TimeUnit.SECONDS);
-		// driver.manage().window().maximize();
+	static WebDriver applyTimeouts(WebDriver driver) {
+		elementSearchTimeout = driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		pageLoadTimeout = driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+		scriptTimeout = driver.manage().timeouts().setScriptTimeout(15, TimeUnit.SECONDS);
 		return driver;
 	}
-	
+
+	static WebDriver applyWindowSettings(WebDriver driver) {
+		driver.manage().window().maximize();
+		return driver;
+	}
+
 }
