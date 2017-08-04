@@ -39,19 +39,21 @@ public class FirefoxFactory implements BrowserFactory {
 
 	@Override
 	public WebDriver createBrowser() throws WebDriverException {
-		return createBrowserWithOptionLegacyOn();
+		return createBrowserWithGeckoDriver();
 	}
 
-	FirefoxDriver createBrowserWithGeckoDriver() throws WebDriverException {
+	private FirefoxDriver createBrowserWithGeckoDriver() throws WebDriverException {
 		initGeckoDriver();
 		return new MyFirefoxDriver(setFirefoxOptions());
 	}
 
-	FirefoxDriver createBrowserWithMarionetteOff() throws WebDriverException {
+	@SuppressWarnings("unused")
+	private FirefoxDriver createBrowserWithMarionetteOff() throws WebDriverException {
 		return new MyFirefoxDriver(setFirefoxOptions().addCapabilities(setCapabilityMarionetteOff()));
 	}
 
-	FirefoxDriver createBrowserWithOptionLegacyOn() throws WebDriverException {
+	@SuppressWarnings("unused")
+	private FirefoxDriver createBrowserWithOptionLegacyOn() throws WebDriverException {
 		return new MyFirefoxDriver(setFirefoxOptions().setLegacy(true));
 	}
 

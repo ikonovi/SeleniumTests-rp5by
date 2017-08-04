@@ -32,8 +32,8 @@ public class Rp5PageElements {
 		searchBox("searchBox"); 		
 
 		private String xpathExpression;
-		private Properties props = null;
-		private InputStream input = null;
+		private Properties props;
+		private InputStream input;
 
 		XPathExpression(String xpathExpression) {
 

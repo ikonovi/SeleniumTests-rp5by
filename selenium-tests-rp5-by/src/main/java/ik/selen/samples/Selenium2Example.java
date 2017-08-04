@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -63,6 +64,8 @@ public class Selenium2Example {
 		WebElement element = driver.findElement(By.name("q"));
 		System.out.println("Page title is: " + driver.getTitle());
 		element.sendKeys("Cheese!");
+			Actions act = new Actions(driver); // !!
+			act.moveToElement(element); // !! Scrolling
 		element.submit();
 
 		(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {

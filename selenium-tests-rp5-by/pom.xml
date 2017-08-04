@@ -17,13 +17,7 @@
 	</build>
 
 	<dependencies>
-<!-- 
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>3.3.1</version>
-		</dependency>
- -->
+
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-firefox-driver</artifactId>
@@ -53,7 +47,19 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-
+<!-- 
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.6</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.5.6</version>
+		</dependency>
+ -->		
 	</dependencies>
 
 </project>

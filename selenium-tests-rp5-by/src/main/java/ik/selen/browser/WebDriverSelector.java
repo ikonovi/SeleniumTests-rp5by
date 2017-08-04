@@ -24,7 +24,7 @@ public class WebDriverSelector {
 			driver = FirefoxFactory.getFactoryInstace().createBrowser();
 			break;
 		case CHROME:
-			driver = ChromeFactory.getInstace().createBrowser();
+			driver = ChromeFactory.getFactoryInstace().createBrowser();
 			break;
 		}
 		

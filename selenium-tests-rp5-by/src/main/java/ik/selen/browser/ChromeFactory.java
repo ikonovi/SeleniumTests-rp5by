@@ -30,7 +30,7 @@ public class ChromeFactory implements BrowserFactory {
 	private ChromeFactory() {
 	}
 
-	static ChromeFactory getInstace() {
+	static ChromeFactory getFactoryInstace() {
 		if (instance == null) {
 			instance = new ChromeFactory();
 		}
