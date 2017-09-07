@@ -2,9 +2,9 @@ package ik.log.samples;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.apache.log4j.NDC;
 
 public class LogExample {
 
@@ -26,15 +26,27 @@ public class LogExample {
 		logger4j.info("This is info msg.");
 		logger4j.warn("This is warn msg.");
 		logger4j.error("This is error msg.");
-		logger4j.fatal("This is fatal msg.");
+		logger4j.fatal("This is fatal msg.");		
 
 		Logger root = Logger.getRootLogger();
 		root.error("root: error");
 		root.info("root: info");
 
 		logger4j.assertLog(false, "FALSE in assetLog()");
-		logger4j.error("Exception happened", new Exception("some fault in app2"));
+		logger4j.error("Exception happened", new Exception("some fault in app2"));		
+		logger4j.info("This message is hedden by filter. It shouldn't apper in logs.");
 
+		// nested diagnostic contexts		
+		NDC.push("Nested");
+		NDC.push("Diagnostic");
+		NDC.push("Context");		
+		logger4j.info("NDC");
+		NDC.pop();
+		logger4j.info("NDC");		
+		NDC.remove();
+		
+		
+		
 		LogManager.shutdown(); // HTMLLayout requires it.
 	}
 

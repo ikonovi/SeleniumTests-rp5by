@@ -47,7 +47,7 @@ class MyFirefoxDriver extends FirefoxDriver {
 	}
 
 	
-	// TODO: Located element highlight by applying style like this 
+	// Located element highlight by applying style like this 
 	// document.getElementById('ArchTemp').style.border = 'medium solid yellow'; 
 	
 	@Override

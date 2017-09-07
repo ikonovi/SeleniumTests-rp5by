@@ -59,7 +59,7 @@ public class Selenium2Example {
 		WebDriver driver = new FirefoxDriver(ffOptions);		
 
 		driver.get("http://google.com");
-		driver.findElement(By.xpath("//body")).sendKeys(Keys.F11);
+		//driver.findElement(By.xpath("//body")).sendKeys(Keys.F11);
 		
 		WebElement element = driver.findElement(By.name("q"));
 		System.out.println("Page title is: " + driver.getTitle());
@@ -79,8 +79,12 @@ public class Selenium2Example {
 
 		assertThat("Page title is wrong.", driver.getTitle(), containsString("Cheese!"));
 
-		driver.quit();
-		
+		System.out.println("before: driver.toString() = " + driver.toString());
+		// output: "FirefoxDriver: firefox on ANY (60d31607-4ced-4373-a1c1-9955c3f10651)"
+		driver.quit();		
+		System.out.println("after: driver.toString() = " + driver.toString());
+		// output: FirefoxDriver: firefox on ANY (null)  
+		System.out.println(driver.toString().contains("null"));
 		
 	}
 

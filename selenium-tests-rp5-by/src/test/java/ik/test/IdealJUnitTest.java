@@ -1,18 +1,14 @@
 package ik.test;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.startsWith;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeFalse;
 import static org.junit.Assume.assumeThat;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Assume;
-import org.junit.AssumptionViolatedException;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -23,14 +19,9 @@ import org.junit.rules.TemporaryFolder;
 import org.junit.rules.TestName;
 import org.junit.rules.TestRule;
 import org.junit.rules.Timeout;
-import org.junit.runner.Description;
 import org.junit.runners.MethodSorters;
-import org.junit.runners.model.Statement;
-import org.openqa.selenium.By;
 
-import ik.selen.by.rp5.Rp5PageElements;
-
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING) // UI tests
 public class IdealJUnitTest {
 
 	@BeforeClass
@@ -45,12 +36,12 @@ public class IdealJUnitTest {
 
 	@Before
 	public void beforeMethod() {
-		//System.out.println("--Before method");
+		System.out.println("--Before method");
 	}
 
 	@After
 	public void afterMethod() {
-		//System.out.println("--After method");
+		System.out.println("--After method");
 	}
 
 	@Rule
@@ -72,8 +63,7 @@ public class IdealJUnitTest {
 	@Test
 	public void test03() {
 		assumeFalse("assumption severy violated", false);
-		assumeThat("vv", is("vv"));
-
+		assertThat("some", equalTo("some"));
 	}
 
 	@Rule
@@ -100,6 +90,7 @@ public class IdealJUnitTest {
 
 	@Test
 	public void testFailed() {
+		assertThat("some", anyOf(equalTo("some"), containsString("so")));
 		fail();
 	}
 
