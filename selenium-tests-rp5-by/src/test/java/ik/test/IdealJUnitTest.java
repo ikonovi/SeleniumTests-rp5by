@@ -4,7 +4,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeFalse;
-import static org.junit.Assume.assumeThat;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -71,6 +70,7 @@ public class IdealJUnitTest {
 
 	@Test
 	public void testInfiniteLoop() {
+		@SuppressWarnings("unused")
 		int i = 0;
 		while (true) {
 			i += 1;
