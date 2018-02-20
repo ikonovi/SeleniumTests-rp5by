@@ -1,4 +1,4 @@
-package ik.selen.samples.test;
+package ik.experimental.tests;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;

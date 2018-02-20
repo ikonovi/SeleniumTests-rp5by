@@ -1,4 +1,4 @@
-package ik.test;
+package ik.experimental.tests;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;

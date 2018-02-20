@@ -1,4 +1,4 @@
-package ik.selen.by.rp5;
+package by.rp5.tests;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 import ik.selen.browser.BrowserType;
 import ik.selen.browser.WebDriverSelector;
+import ik.selen.by.rp5.PageRp5;
 
 public class PageRp5Test {
 
