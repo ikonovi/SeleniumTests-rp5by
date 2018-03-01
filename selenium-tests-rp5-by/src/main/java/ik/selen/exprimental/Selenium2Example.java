@@ -1,4 +1,4 @@
-package ik.selen.samples;
+package ik.selen.exprimental;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
@@ -6,7 +6,6 @@ import static org.junit.Assert.assertThat;
 import java.io.File;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -14,8 +13,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Selenium2Example {
 
@@ -67,13 +64,13 @@ public class Selenium2Example {
 			Actions act = new Actions(driver); // !!
 			act.moveToElement(element); // !! Scrolling
 		element.submit();
-
+/*
 		(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver dr) {
 				return dr.getTitle().toLowerCase().startsWith("cheese!");
 			}
 		});
-
+*/
 		Thread.sleep(2000); // Let the user actually see something!
 		System.out.println("Page title is: " + driver.getTitle());
 

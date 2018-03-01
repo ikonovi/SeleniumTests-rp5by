@@ -10,7 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import ik.selen.samples.LocalizedDecimalFormat;
+import ik.selen.exprimental.LocalizedDecimalFormat;
 
 public class LocalizedDecimalFormatTest {
 

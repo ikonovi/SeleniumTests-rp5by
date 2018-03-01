@@ -6,29 +6,19 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.service.DriverService;
 
 public class PageRp5 extends Page {
 
-	private WebDriver driver;
-	private static final String url = "http://rp5.by/?lang=ru";
-	private boolean acceptNextAlert = true;
-
+	
 	public PageRp5(WebDriver driver) throws Exception {
-		this.driver = driver;
-	}
-
-	public void open() {
-		driver.get(url);
+		super(driver);
 	}
 	
-	public void close() {
-		driver.close();
+	public PageRp5(WebDriver driver, DriverService service) {
+		super(driver,service);
 	}
-
-	public String getTitle() {
-		return driver.getTitle();
-	}
-
+	
 	public WebElement getWeatherReportCaption() {
 		WebElement e = driver.findElement(Rp5PageElements.weatherReportCaption);
 		return e;
@@ -38,17 +28,19 @@ public class PageRp5 extends Page {
 		WebElement e = driver.findElement(Rp5PageElements.searchResultTemperature);
 		return e;
 	}
-	
-	public WebElement getWeatherReportCaptionTemperature() throws InterruptedException{
+
+	public WebElement getWeatherReportCaptionTemperature() throws InterruptedException {
 		WebElement e1 = driver.findElement(Rp5PageElements.weatherReportCaptionTemper);
-		
+
 		// Experimental highlight of element. why arguments ?? not args
-		//JavascriptExecutor js = ((JavascriptExecutor) driver);
-		//String script = "var el = arguments[arguments.length - 1];" + 
-		//					"el.style.border = 'medium solid yellow';";		
-		//WebElement e2 = (WebElement) js.executeAsyncScript(script);
-		//Object responce = js.executeAsyncScript("document.getElementById('ArchTemp').style.border = 'medium solid yellow'");
-		
+		// JavascriptExecutor js = ((JavascriptExecutor) driver);
+		// String script = "var el = arguments[arguments.length - 1];" +
+		// "el.style.border = 'medium solid yellow';";
+		// WebElement e2 = (WebElement) js.executeAsyncScript(script);
+		// Object responce =
+		// js.executeAsyncScript("document.getElementById('ArchTemp').style.border =
+		// 'medium solid yellow'");
+
 		return e1;
 	}
 
@@ -56,31 +48,53 @@ public class PageRp5 extends Page {
 		WebElement e = driver.findElement(By.linkText(location));
 		e.click();
 	}
-	
+
 	public void doSetMeasurementUnitsTemperatureFahrenheit() throws InterruptedException {
-		
+
 		// Open settings area
 		WebElement measureUnitsButton = driver.findElement(Rp5PageElements.measureUnitsButton);
 		measureUnitsButton.click();
-		
+
 		// wait element
 		isElementPresent(Rp5PageElements.measureUnitsMenu);
-		
-		WebElement tempFRadio = driver.findElement(Rp5PageElements.measureUnitsMenuTemperF);		
-		
+
+		WebElement tempFRadio = driver.findElement(Rp5PageElements.measureUnitsMenuTemperF);
+
 		// UI logic
 		if (tempFRadio.isEnabled()) {
 			if (!tempFRadio.isSelected()) {
-				tempFRadio.click();				
+				tempFRadio.click();
 			} else {
 				System.out.println("Can't be clicked by cause it's already selected.");
 			}
 		} else {
 			System.out.println("Can't be clicked by cause it's disabled.");
 		}
-		
+
 		// Close settings area
 		measureUnitsButton.click();
+	}
+
+	public void doSelectLanguage(String language) throws InterruptedException {
+		By langMenuElem = Rp5PageElements.languageMenu;
+		WebElement langMenu = driver.findElement(langMenuElem);
+		langMenu.click();
+
+		String langMenuItemXPath = "//div[@id='langMenu']/ul/li/div[contains(text(),'langPlaceholder')]"
+				.replace("langPlaceholder", language);
+		WebElement langMenuItemElement = driver.findElement(By.xpath(langMenuItemXPath));
+
+		while (!langMenuItemElement.isDisplayed()) {
+			Thread.sleep(300);
+		}
+		langMenuItemElement.click();
+	}
+
+	public void doCloseGeoVidget() {
+		String geoVidgetCloseXPath = "//div[@id='geo-vidget-close']";
+		By geoVidgetCloseBy = By.xpath(geoVidgetCloseXPath);
+		WebElement geoVidgetCloseElem = driver.findElement(geoVidgetCloseBy);
+		geoVidgetCloseElem.click();
 	}
 
 	/**
@@ -114,6 +128,8 @@ public class PageRp5 extends Page {
 		}
 	}
 
+	private boolean acceptNextAlert = true;
+	
 	@SuppressWarnings("unused")
 	private String closeAlertAndGetItsText() {
 		try {

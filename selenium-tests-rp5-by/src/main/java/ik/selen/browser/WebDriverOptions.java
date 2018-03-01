@@ -7,15 +7,15 @@ import org.openqa.selenium.WebDriver.Timeouts;
 
 @SuppressWarnings("unused")
 class WebDriverOptions {
-	
+
 	private static Timeouts elementSearchTimeout;
 	private static Timeouts pageLoadTimeout;
 	private static Timeouts scriptTimeout;
 
 	static WebDriver applyTimeouts(WebDriver driver) {
-		elementSearchTimeout = driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		pageLoadTimeout = driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-		scriptTimeout = driver.manage().timeouts().setScriptTimeout(15, TimeUnit.SECONDS);
+		elementSearchTimeout = driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		pageLoadTimeout = driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+		scriptTimeout = driver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS);
 		return driver;
 	}
 

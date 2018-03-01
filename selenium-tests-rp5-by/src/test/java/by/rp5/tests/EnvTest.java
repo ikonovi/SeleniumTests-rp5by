@@ -6,13 +6,13 @@ import org.openqa.selenium.By;
 
 import ik.selen.by.rp5.Rp5PageElements;
 
-public class Rp5Test01 {
+public class EnvTest {
 
 	@Test
 	public void testPageLocatorExample() {
 		By oBy = Rp5PageElements.measureUnitsButton;
 		Assume.assumeNotNull(oBy);
-		System.out.println("Locator measureUnitsButton = " + oBy);		
+		System.out.println("Locator measureUnitsButton = " + oBy);
 	}
 
 	@Test

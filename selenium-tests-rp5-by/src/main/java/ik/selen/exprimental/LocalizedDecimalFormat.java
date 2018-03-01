@@ -1,4 +1,4 @@
-package ik.selen.samples;
+package ik.selen.exprimental;
 
 import java.text.DecimalFormat;
 import java.util.Locale;

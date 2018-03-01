@@ -18,9 +18,11 @@ public class Rp5PageElements {
 	public static By measureUnitsMenuTemperF = By.xpath(XPathExpression.measureUnitsMenuTemperF.toString());
 	public static By measureUnitsMenuTemperC = By.xpath(XPathExpression.measureUnitsMenuTemperC.toString());
 	public static By weatherReportCaptionTemper = By.xpath(XPathExpression.weatherReportCaptionTemper.toString());
+	public static By languageMenu = By.xpath(XPathExpression.languageMenu.toString());
 
 	private enum XPathExpression {
 		
+		languageMenu("languageMenu"),
 		weatherReportCaptionTemper("weatherReportCaptionTemper"),
 		measureUnitsMenuTemperF("measureUnitsMenuTemperF"),
 		measureUnitsMenuTemperC("measureUnitsMenuTemperC"),

@@ -2,13 +2,12 @@ package ik.selen.browser;
 
 import java.io.File;
 
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.firefox.GeckoDriverService;
 
 /**
  * Starts FireFox web-browser and pass on WebDriver object.
@@ -27,8 +26,11 @@ public class FirefoxFactory implements BrowserFactory {
 
 	private static FirefoxFactory factoryInstance;
 
-	private FirefoxFactory() {
-	}
+	private static final String GECKO_DRIVER_ENV = "webdriver.gecko.driver";
+	private String driverPath;
+	private File executable;
+	private GeckoDriverService service;
+
 
 	static FirefoxFactory getFactoryInstace() {
 		if (factoryInstance == null) {
@@ -38,56 +40,53 @@ public class FirefoxFactory implements BrowserFactory {
 	}
 
 	@Override
-	public WebDriver createBrowser() throws WebDriverException {
-		return createBrowserWithGeckoDriver();
+	public GeckoDriverService getBrowserService() {
+		return service;
 	}
 
-	private FirefoxDriver createBrowserWithGeckoDriver() throws WebDriverException {
-		initGeckoDriver();
-		return new MyFirefoxDriver(setFirefoxOptions());
+	@Override
+	public WebDriver createBrowserDefault() throws WebDriverException {
+		// return createBrowserWithOptionLegacyOn();  // ! Legacy style
+		return createBrowserWithGeckoDriverDefault();
 	}
 
-	@SuppressWarnings("unused")
-	private FirefoxDriver createBrowserWithMarionetteOff() throws WebDriverException {
-		return new MyFirefoxDriver(setFirefoxOptions().addCapabilities(setCapabilityMarionetteOff()));
+	@Override
+	public WebDriver createBrowserAsService() throws WebDriverException {
+		checkSysEnv();
+		service = new GeckoDriverService.Builder().
+				usingDriverExecutable(executable).
+				usingAnyFreePort().
+				build();
+		return new FirefoxDriver(service, setFirefoxOptions());
+	}
+	
+	private FirefoxDriver createBrowserWithGeckoDriverDefault() throws WebDriverException {
+		checkSysEnv();
+		return new FirefoxDriver(setFirefoxOptions());
 	}
 
 	@SuppressWarnings("unused")
 	private FirefoxDriver createBrowserWithOptionLegacyOn() throws WebDriverException {
-		return new MyFirefoxDriver(setFirefoxOptions().setLegacy(true));
+		return new FirefoxDriver(setFirefoxOptions().setLegacy(true));
 	}
 
-	private void initGeckoDriver() throws WebDriverException {
-
-		final String GECKO_DRIVER_ENV = "webdriver.gecko.driver";
+	private void checkSysEnv() throws WebDriverException {
 
 		// Get user's environment variable.
-		String envValue = System.getenv(GECKO_DRIVER_ENV);
-		if (envValue == null) {
+		driverPath = System.getenv(GECKO_DRIVER_ENV);
+		if (driverPath == null) {
 			throw new WebDriverException("User's environment variable \"" + GECKO_DRIVER_ENV
 					+ "\" is not defined in your system, or you didn't restart Eclipse after you defined it.");
 		}
-
-		File fileExe = new File(envValue);
-
+		executable = new File(driverPath);
+		
 		// Initialize system environment variable, using user's environment variable.
-		if (fileExe.exists()) {
-			System.setProperty(GECKO_DRIVER_ENV, envValue);
+		if (executable.exists()) {
+			System.setProperty(GECKO_DRIVER_ENV, driverPath);
 		} else {
 			throw new WebDriverException("User's environment variable \"" + GECKO_DRIVER_ENV
-					+ "\" is not set or has incorrect value, " + fileExe.getPath());
+					+ "\" is not set or has incorrect value, " + executable.getPath());
 		}
-	}
-
-	/**
-	 * Use legacy FireFox extension as a driver.
-	 */
-	private Capabilities setCapabilityMarionetteOff() {
-		DesiredCapabilities capabilities = new DesiredCapabilities();
-		capabilities.setCapability("marionette", false);
-		// The following is an alternative for the code above.
-		// System.setProperty("webdriver.firefox.marionette", "false");
-		return capabilities;
 	}
 
 	private FirefoxOptions setFirefoxOptions() {
@@ -100,5 +99,4 @@ public class FirefoxFactory implements BrowserFactory {
 		options.setProfile(profile);
 		return options;
 	}
-
 }

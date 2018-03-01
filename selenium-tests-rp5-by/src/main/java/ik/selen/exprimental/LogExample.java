@@ -1,4 +1,4 @@
-package ik.selen.samples;
+package ik.selen.exprimental;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -1,27 +1,9 @@
-package ik.selen.samples;
+package ik.selen.exprimental;
 
-import java.io.File;
-import java.time.Duration;
-import java.util.logging.Level;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.net.SyslogAppender;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.logging.Logs;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import ik.selen.browser.BrowserType;
 import ik.selen.browser.WebDriverSelector;
