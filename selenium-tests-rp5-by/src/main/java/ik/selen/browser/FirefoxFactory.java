@@ -20,7 +20,7 @@ import org.openqa.selenium.firefox.GeckoDriverService;
  * https://github.com/mozilla/geckodriver/releases</a>
  * 
  * @author KanavalauI
- * @see also {@link ChromeFactory}
+ * @see ik.selen.browser.ChromeFactory
  */
 public class FirefoxFactory implements BrowserFactory {
 

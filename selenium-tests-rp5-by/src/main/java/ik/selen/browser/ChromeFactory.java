@@ -19,7 +19,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
  * https://sites.google.com/a/chromium.org/chromedriver/downloads</a>
  * 
  * @author KanavalauI
- * @see also {@link FirefoxFactory}
+ * @see ik.selen.browser.FirefoxFactory
  *
  */
 public class ChromeFactory implements BrowserFactory {
